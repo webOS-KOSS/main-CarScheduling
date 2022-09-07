@@ -53,14 +53,14 @@ void reconnect() {
     if (client.connect(clientName))
     {
       Serial.println("connected");
-      client.subscribe("car_check"); // led 토픽 구독
+      client.subscribe("car/check");
     } 
     else 
     {
       //연결실패하면 현재 상태 출력하고 5초 후 다시 시도
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
+      Serial.println("try again in 5 seconds");
       delay(5000);
     }
   }
@@ -71,19 +71,17 @@ void reconnect() {
 void callback(char* topic, byte* payload, unsigned int uLen) {
   char pBuffer[uLen+1];
   int i;
-  int ledTemp = -1;
-  for(i = 0; i < uLen; i++)
-  {
+  
+  for(i = 0; i < uLen; i++) {
     pBuffer[i]=(char)payload[i];
   }
+  
   Serial.println(pBuffer); // 1 or 0
-  if(pBuffer[0]=='1')
-  {
+  
+  if((String)pBuffer == "correct") {
     stat = ESC;
   } 
 }
-
-//------------------------------------------------------------------
 
 //------------------------------------------------------------------
 
@@ -131,46 +129,42 @@ void setup() {
   setup_wifi();
   
   client.setServer(mqtt_server, 1883); //mqtt 서버와 연결(ip, 1883)
+  client.setCallback(callback); //callback 함수 세팅
 }
 
 //------------------------------------------------------------------
 
 void loop() {
   if (!client.connected()){reconnect();} //mqtt 연결이 안되어있다면 다시 연결
-  client.loop(); //연결을 계속해서 유지하고 들어오는 메시지를 확인할 수 있도록 함
   
   switch (stat) {
+//------------------------------------------------------------------------
     case DET: // 차가 오기를 대기하는 상태
     
       if (getDistance(20) <= threshold) {
-        stat = REC;
-      }
-      
-      delay(500);
-      break;
-  
-      
-    case REC: // 2초를 대기하는 상태 & 인식하는 상태
-      if (getDistance(20) <= threshold) {
-        if (cnt <= 5) {
-          cnt = 0;
-          mqttPublish("car", "recognized");
-        }
-        
-        cnt++;
         Serial.println(cnt);
-        delay(500);
+        if (cnt >= 5) {
+          cnt = 0;
+          mqttPublish("car/detect", "recognized");
+          stat = REC;
+        } 
+        cnt++;
       }
       else {
-        stat = DET;
         cnt = 0;
       }
+      delay(500);
       break;
-      
+//------------------------------------------------------------------------
+    case REC: // 차가 인식된 상태(MQTT car_check 토픽의 통신을 대기하는 상태)
+      client.loop(); //연결을 계속해서 유지하고 들어오는 메시지를 확인할 수 있도록 함
+      break;
+//------------------------------------------------------------------------
     case ESC:
       Serial.println("escaped!");
+      delay(100);
       break;
+//------------------------------------------------------------------------
   }
   
-  delay(500);
 }
