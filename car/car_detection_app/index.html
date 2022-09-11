@@ -1,0 +1,47 @@
+<!--
+Copyright (c) 2020 LG Electronics Inc.
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example Web App</title>
+<style type="text/css">
+    body {
+        width: 100%;
+        height: 100%;
+        background-color:#202020;
+    }
+    div {
+        position:absolute;
+        height:100%;
+        width:100%;
+        display: table;
+    }
+    h1 {
+        display: table-cell;
+        vertical-align: middle;
+        text-align:center;
+        color:#FFFFFF;
+    }
+</style>
+<script type="text/javascript">
+    var bridge = new WebOSServiceBridge();
+
+    function serviceStart() {
+        console.log("call my service");
+        const url = 'luna://com.my.app.service/serviceStart';
+        const params = {};
+        bridge.call(url, JSON.stringify(params));
+    }
+</script>
+</head>
+<body>
+    <div>
+        <h1 id="txt_msg">Hello, Web Application!!</h1>
+        <button id="serviceStart" onclick="serviceStart()">Start</button>
+        <!-- <button id="mqttServerOn" onclick="serviceLog()">Log</button> -->
+    </div>
+</body>
+</html>

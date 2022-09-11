@@ -1,0 +1,15 @@
+{
+  "id": "com.my.app",
+  "version": "1.0.0",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "my",
+  "icon": "icon.png",
+  "requiredPermissions": [
+    "com.my.app.service.group",
+    "time.query",
+    "activity.operation",
+    "all"
+  ]
+}
