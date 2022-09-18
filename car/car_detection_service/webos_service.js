@@ -7,8 +7,7 @@ const logHeader = "[" + pkgInfo.name + "]";
 const mosquitto = require("mqtt");
 const mqtt = require("./mqtt_lib");
 
-const ip = "192.168.0.37";
-var handle = undefined;
+const ip = "3.35.48.163";
 
 service.register("serviceStart", function(message) {
     
@@ -28,13 +27,12 @@ service.register("serviceStart", function(message) {
         if (topic == "car/camera" && message == "ready"){
             luna.tts("카메라 준비");
             luna.toast("카메라 준비");
-            handle = luna.cameraReady("camera1");
+            luna.cameraReady("camera1");
         }
-        if (topic == "car/detect" && message == "recognized" && handle != undefined){
-            console.log(handle, typeof(handle));
+        if (topic == "car/detect" && message == "recognized"){
             luna.tts("차량이 도착했습니다.");
             luna.toast("차량이 도착했습니다.");
-            luna.cameraCapture(handle, "/home/root/vidoes");
+            luna.cameraCapture("/media/images/");
         };
     });
 

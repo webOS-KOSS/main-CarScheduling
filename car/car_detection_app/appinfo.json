@@ -1,13 +1,13 @@
 {
-  "id": "com.my.app",
+  "id": "com.car.app",
   "version": "1.0.0",
   "vendor": "My Company",
   "type": "web",
   "main": "index.html",
-  "title": "my",
+  "title": "car",
   "icon": "icon.png",
   "requiredPermissions": [
-    "com.my.app.service.group",
+    "com.car.app.service.group",
     "time.query",
     "activity.operation",
     "all"
