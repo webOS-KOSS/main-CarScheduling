@@ -181,13 +181,13 @@ void loop() {
       break;
 //------------------------------------------------------------------------
     case CORRECT: // 인식된 차가 등록되어 있는 경우 --> 차량 차단기를 열어준다
-      Serial.println("Registered car")
+      Serial.println("Registered car");
       servo.write(90);
       stat = ESC;
       break;
 //------------------------------------------------------------------------
     case INCORRECT: // 인식된 차가 등록되어있지 않는 경우 --> 차량 차단기를 열어주지 않는다.
-      Serial.println("not registered car")
+      Serial.println("not registered car");
       servo.write(0);
       stat = ESC;
       break;
