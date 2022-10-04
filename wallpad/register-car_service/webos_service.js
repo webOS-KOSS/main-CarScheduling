@@ -35,8 +35,8 @@ service.register("deleteCarData", async function(message) {
     var cars = undefined;
     let connect = await mongo.connectDB(mongoIP).then((result) => {console.log(result)}).catch((error) => {console.log(error)})
     // let schema = await mongo.carSchema("cars").then((result) => {Car = result}).catch(() => {})
-    let delte = await mongo.deleteCarData(Car, message.carNumber).then((result) => {console.log(result)}).catch((error) => {console.log(error)})
+    let delte = await mongo.deleteCarData(Car, message.payload.carNumber).then((result) => {console.log(result)}).catch((error) => {console.log(error)})
     let show = await mongo.showCarData(Car).then((result) => {carArray = result})
-    console.log(message.carNumber + " : delete success");
+    console.log(message.payload.carNumber + " : delete success");
     mongo.closeDB()
 })

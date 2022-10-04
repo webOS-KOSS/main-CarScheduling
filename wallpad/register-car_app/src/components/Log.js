@@ -28,10 +28,11 @@ const LogBase = kind({ // enact kind
       let car = data[0];
       let start = data[1];
       let end = data[2];
+      console.log("car : " + car)
       let lsRequest = {
         service:"luna://com.registercar.app.service",
         method:"deleteCarData",
-        parameters: {carNumber: car, startAt: start, endAt: end},
+        parameters: {carNumber: car},
         onSuccess: (msg) => {console.log(msg);},
         onFailure: (msg) => {console.log(msg);},
       }

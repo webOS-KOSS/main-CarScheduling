@@ -38,7 +38,7 @@ function carSchema(collection){
 function showCarData(Car){
   return new Promise((resolve) => {
     Car.find({})                 
-    .sort('-startAt') //startAt순서대로 정렬(내림차순이라 -붙음)           
+    .sort('startAt') //startAt순서대로 정렬(내림차순이라 -붙음)           
     .exec(function(err, cars){
       console.log("show...")
       let carArray = []
@@ -46,9 +46,9 @@ function showCarData(Car){
         let parsingData = ""
         parsingData += car.carNumber
         parsingData += " | "
-        parsingData += car.startAt.substr(0, 12)
+        parsingData += car.startAt.substr(0, 10)
         parsingData += " | "
-        parsingData += car.expireAt.substr(0, 12)
+        parsingData += car.expireAt.substr(0, 10)
         carArray.push(parsingData)
       }
       resolve(carArray)
