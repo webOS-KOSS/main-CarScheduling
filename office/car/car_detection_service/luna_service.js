@@ -62,6 +62,31 @@ function cameraOpen(device){
     });
 }
 
+function cameraFormat(){
+    return new Promise((resolve, reject) => {
+        let cameraFormat_url = "luna://com.webos.service.camera2/setFormat";
+        let cameraFormat_params = {
+            "handle":handle,
+            "params":{
+                "width":1920,
+                "height":1080,
+                "format":"JPEG",
+                "fps":30
+            }
+        }
+        ls2.call(cameraFormat_url, cameraFormat_params, (msg) => {
+            if (msg.payload.returnValue) {
+                console.log("[set format] " + JSON.stringify(msg.payload))
+                resolve(JSON.stringify(msg.payload.returnValue));
+            }
+            else {
+                console.log("error!")
+                reject("[set format] " + JSON.stringify(msg.payload))
+            }
+        })
+    });
+}
+
 function cameraPreviewStart(){
     return new Promise((resolve, reject) => {
         let cameraPreviewStart_url = "luna://com.webos.service.camera2/startPreview";
@@ -88,25 +113,35 @@ function cameraPreviewStart(){
 async function cameraReady(device){
     let open = await cameraOpen(device).then((result) => {handle = result}).catch((error) => {console.log(error)});
     console.log(handle);
+    let format = await cameraFormat(handle).then((result) => {check = result}).catch((error) => {console.log(error)});
+    console.log(check);
     let privew = await cameraPreviewStart(handle).then((result) => {key = result}).catch((error) => {console.log(error)});
     console.log(key);
 }
 
 function cameraCapture(path){
-    let cameraCapture_url = "luna://com.webos.service.camera2/startCapture";
-    let cameraCapture_params = {
-        "handle": handle,
-        "params":
-            {
-                "width": 640,
-                "height": 480,
-                "format": "JPEG",
-                "mode":"MODE_ONESHOT"
-            },
-        "path": path
-    }
-    ls2.call(cameraCapture_url, cameraCapture_params, (msg) => {
-        console.log("[CameraCapture]" + JSON.stringify(msg));
+    return new Promise((resolve, reject) => {
+        let cameraCapture_url = "luna://com.webos.service.camera2/startCapture";
+        let cameraCapture_params = {
+            "handle": handle,
+            "params":
+                {
+                    "width": 1920,
+                    "height": 1080,
+                    "format": "JPEG",
+                    "mode":"MODE_ONESHOT"
+                },
+            "path": path
+        }
+        ls2.call(cameraCapture_url, cameraCapture_params, (msg) => {
+            if (msg.payload.returnValue) {
+                console.log("[camera capture] " + JSON.stringify(msg.payload));
+                resolve(msg.payload.returnValue);
+            } else {
+                console.log("error!");
+                reject("[camera capture] " + JSON.stringify(msg.payload));
+            }
+        });
     });
 }
 

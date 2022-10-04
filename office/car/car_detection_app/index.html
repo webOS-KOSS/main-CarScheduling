@@ -31,7 +31,7 @@ SPDX-License-Identifier: Apache-2.0
 
     function serviceStart() {
         console.log("call my service");
-        const url = 'luna://com.car.app.service/serviceStart';
+        const url = 'luna://com.car.app.service/initServiceStart';
         const params = {};
         bridge.call(url, JSON.stringify(params));
     }

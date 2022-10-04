@@ -11,7 +11,7 @@
 
 const char* ssid = "koss"; //사용하는 Wifi 이름
 const char* password = "a123456789!"; // 비밀번호
-const char* mqtt_server = "3.35.48.163"; // MQTT broker ip
+const char* mqtt_server = "3.34.50.139"; // MQTT broker ip
 const char* clientName = "ledController"; // client 이름
 
 WiFiClient espClient; // 인터넷과 연결할 수 있는 client 생성
@@ -67,7 +67,7 @@ void reconnect() {
     if (client.connect(clientName))
     {
       Serial.println("connected");
-      client.subscribe("car/contrast");
+      client.subscribe("car/compare");
     } 
     else 
     {
