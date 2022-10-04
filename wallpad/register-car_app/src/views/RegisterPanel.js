@@ -2,7 +2,7 @@ import kind from "@enact/core/kind";
 import Button from "@enact/sandstone/Button";
 import { Header, Panel } from "@enact/sandstone/Panels";
 import { InputField } from "@enact/sandstone/Input";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import LS2Request from '@enact/webos/LS2Request';
 import css from "./RegisterPanel.module.less";
@@ -16,7 +16,7 @@ const InputCarNum = () => { // 리엑트 함수형 컴포넌트 생성
   let [start, setStart] = useState("");
   let [end, setEnd] = useState("");
   //------------------------------------------------------------------
-  // submit event 설정 
+  // submit event 설정
   const onSubmit = () => {
     if (carNumber && start.value <= end.value) { // carNumber가 공백이 아니고, 시작날짜가 마지막 날짜보다 작거나 같을때만 올바른 값으로 간주한다.
       console.log(carNumber);
@@ -31,8 +31,8 @@ const InputCarNum = () => { // 리엑트 함수형 컴포넌트 생성
     }
   };
   //------------------------------------------------------------------
-  //carNumber와 start, end를 inputCarNum에서 받아내어 해당 정보를 데이터베이스에 저장하는 함수이다. 
-  function registerCar(carNumber, start, end) { 
+  //carNumber와 start, end를 inputCarNum에서 받아내어 해당 정보를 데이터베이스에 저장하는 함수이다.
+  function registerCar(carNumber, start, end) {
     console.log("register Car");
 		let lsRequest = {
 			service:"luna://com.registercar.app.service",
@@ -75,6 +75,7 @@ const InputCarNum = () => { // 리엑트 함수형 컴포넌트 생성
       onSuccess: (msg) => {console.log(msg);},
       onFailure: (msg) => {console.log(msg);},
     }
+    bridge.send(lsRequest)
   }
   //--------------------------------------------------------
   return (
@@ -112,7 +113,7 @@ const MainPanel = kind({
     text: ({ next }) => `To ${next} Panel`,
   },
 
-  render: ({ title, text, ...rest }) => {
+  render: ({ title, ...rest }) => {
     delete rest.next;
     return (
       <Panel {...rest}>

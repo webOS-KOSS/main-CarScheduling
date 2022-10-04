@@ -25,7 +25,7 @@ const Sample = kind({
       onNavigate({ path: "/first/second" }),
   },
 
-  render: ({ onFirstPanel, onNavigate, onSecondPanel, path, ...rest }) => {
+  render: ({ onNavigate, onSecondPanel, path, ...rest }) => {
     return (
       <RoutablePanels
         {...rest}

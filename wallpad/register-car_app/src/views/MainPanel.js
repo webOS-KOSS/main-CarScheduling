@@ -1,4 +1,3 @@
-import kind from "@enact/core/kind";
 import Button from "@enact/sandstone/Button";
 import { Header, Panel } from "@enact/sandstone/Panels";
 import Scroller from "@enact/ui/Scroller";
