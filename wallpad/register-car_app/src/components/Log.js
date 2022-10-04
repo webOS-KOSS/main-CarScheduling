@@ -24,10 +24,14 @@ const LogBase = kind({ // enact kind
     // remove함수가 실행되면 children이라는 변수를 넘겨받고, 해당 변수를 parsing하여 carNumber를 추출하고, 해당 carNumber를 갖고 있는 데이터를 데이터베이스에서 삭제하기 위해 서비스로 정보를 전달한다.
     remove: (children) => {
       console.log(children + " : remove");
+      let data = children.split(" | ");
+      let car = data[0];
+      let start = data[1];
+      let end = data[2];
       let lsRequest = {
         service:"luna://com.registercar.app.service",
         method:"deleteCarData",
-        parameters: {carNumber : children},
+        parameters: {carNumber: car, startAt: start, endAt: end},
         onSuccess: (msg) => {console.log(msg);},
         onFailure: (msg) => {console.log(msg);},
       }

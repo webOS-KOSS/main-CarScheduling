@@ -32,13 +32,13 @@ const InputCarNum = () => { // 리엑트 함수형 컴포넌트 생성
   };
   //------------------------------------------------------------------
   //carNumber와 start, end를 inputCarNum에서 받아내어 해당 정보를 데이터베이스에 저장하는 함수이다.
-  function registerCar(carNumber, start, end) {
+  function registerCar(car, start, end) {
     console.log("register Car");
 		let lsRequest = {
 			service:"luna://com.registercar.app.service",
 			method:"registerCar",
 			parameters: {put: {
-        carNumber: carNumber,
+        carNumber: car,
         startAt: start,
         endAt: end
       }},

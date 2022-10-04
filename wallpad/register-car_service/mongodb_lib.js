@@ -16,6 +16,7 @@ function connectDB(mongoIP){
 // mongoDB 연결 끊기
 function closeDB(){
     mongoose.connection.close()
+    console.log("MongoDB Closed")
 }
 //--------------------------------------------
 // 해당 collection에 들어갈 스키마 설정
@@ -40,7 +41,17 @@ function showCarData(Car){
     .sort('-startAt') //startAt순서대로 정렬(내림차순이라 -붙음)           
     .exec(function(err, cars){
       console.log("show...")
-      resolve(cars)
+      let carArray = []
+      for (car of cars){
+        let parsingData = ""
+        parsingData += car.carNumber
+        parsingData += " | "
+        parsingData += car.startAt.substr(0, 12)
+        parsingData += " | "
+        parsingData += car.expireAt.substr(0, 12)
+        carArray.push(parsingData)
+      }
+      resolve(carArray)
     });
   }
 )}

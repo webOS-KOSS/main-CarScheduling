@@ -24,7 +24,7 @@ const MainPanel = ({onClick, title, ...rest}) => {
       service:"luna://com.registercar.app.service",
       method:"mainInit",
       parameters: {},
-      onSuccess: (msg) => {console.log(msg);},
+      onSuccess: (msg) => {console.log(msg); setLogs(msg.reply)},
       onFailure: (msg) => {console.log(msg);},
     }
     bridge.send(lsRequest);
