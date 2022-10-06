@@ -18,3 +18,7 @@
  ┃ ┃ ┗ 📂register-car_service <br/>
  ┣ 📜.gitignore <br/>
  ┗ 📜README.md <br/>
+
+## System Architecture
+
+![System Architecture](CarShedulingSystemArchitecture.jpg)
