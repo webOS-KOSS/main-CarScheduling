@@ -1,6 +1,5 @@
 import kind from "@enact/core/kind";
 import Proptypes from "prop-types";
-import Button from "@enact/sandstone/Button";
 
 import css from "./Log.module.less";
 
@@ -13,23 +12,21 @@ const LogBase = kind({
   },
 
   propTypes: {
+    handlers: {
+      remove: () => {
+        console.log("remove");
+      },
+    },
     children: Proptypes.string,
     index: Proptypes.number,
     remove: Proptypes.func,
   },
 
-  handlers: {
-    remove: () => {
-      console.log("remove");
-    },
-  },
-
-  render: ({ children, index, remove, ...rest }) => {
+  render: ({ children, index, ...rest }) => {
     return (
       <div {...rest}>
         <div className={css.log}>
           <div className={css.text}>{children}</div>
-          <Button onClick={remove}>delete</Button>
         </div>
       </div>
     );
