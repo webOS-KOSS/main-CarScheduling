@@ -1,8 +1,7 @@
-const { MqttClient } = require("mqtt");
-
 var ls2 = undefined;
 var handle = undefined;
 var key = undefined;
+var check = undefined;
 
 function init(service){
     ls2 = service;
