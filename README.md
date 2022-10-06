@@ -21,4 +21,4 @@
 
 ## System Architecture
 
-![System Architecture](CarShedulingSystemArchitecture.jpg)
+![System Architecture](CarSchedulingSystemArchitecture.jpg)
