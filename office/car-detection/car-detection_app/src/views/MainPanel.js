@@ -22,7 +22,7 @@ const MainPanel = () => {
     return new Promise((resolve, reject) => {
       let params = {};
       let lsRequest = {
-        service: "luna://com.tlqkf.app.service",
+        service: "luna://com.cardetection.app.service",
         method: "init",
         parameters: params,
         onSuccess: (msg) => {
@@ -62,7 +62,7 @@ const MainPanel = () => {
   const loop = () => {
     let params = { subscribe: true };
     let lsRequest = {
-      service: "luna://com.tlqkf.app.service",
+      service: "luna://com.cardetection.app.service",
       method: "loop",
       parameters: params,
       onSuccess: (msg) => {

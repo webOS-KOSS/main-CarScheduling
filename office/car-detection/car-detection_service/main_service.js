@@ -102,7 +102,10 @@ async function tesseract(){
   let file_name = execSync("ls /media/images/");
   let parsed_file_name = String(file_name).split("\n")
   let latest_file_name = parsed_file_name[parsed_file_name.length - 2]
-  execSync("docker exec tesseract python3.9 /root/tesseract-ocr/app.py --vid " + latest_file_name)
+  console.log(file_name + "")
+  console.log(latest_file_name + "")
+  console.log("docker exec tesseract python3.9 /root/tesseract-ocr/app.py --vid " + String(latest_file_name))
+  execSync("docker exec tesseract python3.9 /root/tesseract-ocr/app.py --vid " + String(latest_file_name))
 }
 
 service.register("init", (msg) => {
@@ -116,8 +119,10 @@ service.register("loop", (msg) => {
   client = mqtt.connect(ip);
   mqtt.subscribe(["car/analyze", "car/detect", "car/data"]);
 
-  exec("systemctl restart docker");
-  exec("docker start tesseract");
+  let log = exec("systemctl restart docker");
+  console.log(log + "")
+  let log2 = exec("docker start tesseract");
+  console.log(log2 + "")
   luna.toast("서비스 시작!");
   luna.tts("서비스 시작!");
   luna.cameraReady("camera1");

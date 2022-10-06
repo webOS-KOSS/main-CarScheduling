@@ -12,11 +12,6 @@ const LogBase = kind({
   },
 
   propTypes: {
-    handlers: {
-      remove: () => {
-        console.log("remove");
-      },
-    },
     children: Proptypes.string,
     index: Proptypes.number,
     remove: Proptypes.func,

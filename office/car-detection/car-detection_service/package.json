@@ -11,6 +11,8 @@
   "license": "BSD",
   "dependencies": {
     "@types/webos-service": "^0.4.2",
+    "mongoose": "^6.6.5",
     "mqtt": "^4.3.7"
-  }
+  },
+  "keywords": []
 }
