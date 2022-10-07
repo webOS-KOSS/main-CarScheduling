@@ -6,7 +6,7 @@ import LS2Request from "@enact/webos/LS2Request";
 import { useEffect, useState } from "react";
 
 const MainPanel = () => {
-  const [logs, setLogs] = useState(["a"]);
+  const [logs, setLogs] = useState(["날짜 | 차량 번호 | 차량 정보 | 통과 여부"]);
   const bridge = new LS2Request();
 
   async function start() {
@@ -55,7 +55,11 @@ const MainPanel = () => {
       }
       lst.unshift(text);
     }
-    setLogs(lst);
+    setLogs(lst.sort((a, b) => {
+      if (a > b) return -1;
+      else if (b > a) return 1;
+      else return 0;
+    }));
     console.log(lst);
   };
 
