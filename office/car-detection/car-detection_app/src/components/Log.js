@@ -14,7 +14,6 @@ const LogBase = kind({
   propTypes: {
     children: Proptypes.string,
     index: Proptypes.number,
-    remove: Proptypes.func,
   },
 
   render: ({ children, index, ...rest }) => {

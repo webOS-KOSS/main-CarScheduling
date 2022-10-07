@@ -43,7 +43,7 @@ const MainPanel = () => {
     let lst = [];
     const results = res.results;
     for (let i in results) {
-      let text = `${results[i].time} | ${results[i].carNumber} | `
+      let text = `${results[i].time.slice(0, -7)} | ${results[i].carNumber} | `
       if (results[i].status === "register") {
         text += "임시 등록 차량 | 통과";
       }
