@@ -112,7 +112,7 @@ const InputCarNum = () => {
         <DatePicker className={css.datepicker} onChange={setStart} />
         <DatePicker className={css.datepicker} onChange={setEnd} />
       </div>
-      <div className={css.submitBtn}>
+      <div className={css.submitBtn} backgroundOpacity="transparent">
         <Button type="submit" onClick={onSubmit}>
           submit
         </Button>
@@ -137,8 +137,8 @@ const MainPanel = kind({
   render: ({ title, ...rest }) => {
     delete rest.next;
     return (
-      <Panel {...rest}>
-        <Header title={title} />
+      <Panel className={css.custom} {...rest}>
+        <Header className={css.custom} title={title} />
         <InputCarNum />
       </Panel>
     );

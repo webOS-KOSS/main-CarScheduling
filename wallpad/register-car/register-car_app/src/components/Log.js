@@ -47,7 +47,7 @@ const LogBase = kind({ // enact kind
       <div {...rest}>
         <div className={css.log}>
           <span>{children}</span>
-          <Button onClick={() => {remove(children)}}>remove</Button>
+          <Button onClick={() => {remove(children)}} className={css.button} backgroundOpacity="transparent">remove</Button>
         </div>
       </div>
     );

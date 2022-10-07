@@ -19,8 +19,8 @@ const Logs = kind({
 
   render: ({ children, ...rest }) => (
     <div {...rest}>
-      <div className={css.list}>
-        <Repeater childComponent={Log} itemProp="index">
+      <div className={css.list} backgroundOpacity="transparent">
+        <Repeater childComponent={Log} itemProp="index" backgroundOpacity="transparent">
           {children}
         </Repeater>
       </div>

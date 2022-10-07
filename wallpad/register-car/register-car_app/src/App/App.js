@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import MainPanel from "../views/MainPanel";
 import RegisterPanel from "../views/RegisterPanel";
 
+import css from "./App.module.less";
+// import css from "./App.module.less"
 import AppStateDecorator from "./AppStateDecorator";
 
 const RoutablePanels = Routable({ navigate: "onBack" }, Panels);
@@ -27,20 +29,20 @@ const Sample = kind({
 
   render: ({ onNavigate, onSecondPanel, path, ...rest }) => {
     return (
-      <RoutablePanels
+      <RoutablePanels className={css.custom}
         {...rest}
         arranger={SlideLeftArranger}
         onBack={onNavigate}
         path={path}
       >
-        <Route
+        <Route className={css.custom}
           component={MainPanel}
           onClick={onSecondPanel}
           next="second"
           path="first"
           title="차량 등록 조회"
         >
-          <Route
+          <Route className={css.custom}
             component={RegisterPanel}
             next="first"
             path="second"
@@ -51,6 +53,7 @@ const Sample = kind({
     );
   },
 });
+
 
 const AppBase = AppStateDecorator(Sample);
 const App = ThemeDecorator(AppBase);

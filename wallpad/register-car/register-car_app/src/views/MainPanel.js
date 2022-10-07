@@ -5,6 +5,8 @@ import Logs from "./Logs";
 import PropTypes from "prop-types";
 import LS2Request from '@enact/webos/LS2Request';
 import {useEffect, useState} from "react";
+import css from "./MainPanel.module.less";
+
 //-------------------------------------------------------------------
 const bridge = new LS2Request(); // LS2 서비스 요청 인스턴스 생성
 //-------------------------------------------------------------------
@@ -34,7 +36,7 @@ const MainPanel = ({onClick, title, ...rest}) => {
     <Panel {...rest}>
         <Header title={title} />
         <Scroller>
-          <Button onClick={onClick}>Register</Button>
+          <Button className={css.button} onClick={onClick} backgroundOpacity="transparent">Register</Button>
           <Logs>{logs}</Logs>
         </Scroller>
       </Panel>
