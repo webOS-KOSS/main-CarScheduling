@@ -26,6 +26,6 @@
 ## Quick Start
 ### 📂office
 - 📂arduino <br/>
-###### <a href="https://github.com/webOS-KOSS/main-setting/blob/main/Arduino/ESP8266.md">ESP8266 환경 설정</a> -> <a href="https://github.com/webOS-KOSS/main-setting/blob/main/Arduino/ESP8266.md">차량 차단기 하드웨어 설정</a>
+###### <a href="https://github.com/webOS-KOSS/main-setting/blob/main/Arduino/ESP8266.md">ESP8266 환경 설정</a> -> <a href="https://github.com/webOS-KOSS/main-setting/blob/main/Arduino/CarBarrier.md">차량 차단기 하드웨어 설정</a>
 -> 📜barrier.ino 컴파일
 - car-detection</a>n
