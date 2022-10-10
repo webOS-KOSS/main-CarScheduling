@@ -112,7 +112,7 @@ const InputCarNum = () => {
         <DatePicker className={css.datepicker} onChange={setStart} />
         <DatePicker className={css.datepicker} onChange={setEnd} />
       </div>
-      <div backgroundOpacity="transparent">
+      <div>
         <Button className={css.submitBtn} type="submit" onClick={onSubmit}>
           submit
         </Button>
@@ -121,8 +121,8 @@ const InputCarNum = () => {
   );
 };
 //----------------------------------------------------------------
-const MainPanel = kind({
-  name: "MainPanel",
+const RegisterPanel = kind({
+  name: "RegisterPanel",
 
   propTypes: {
     next: PropTypes.string,
@@ -145,4 +145,4 @@ const MainPanel = kind({
   },
 });
 
-export default MainPanel;
+export default RegisterPanel;
