@@ -1,12 +1,13 @@
 import kind from "@enact/core/kind";
 import Proptypes from "prop-types";
 import Button from "@enact/sandstone/Button";
-import LS2Request from '@enact/webos/LS2Request';
+import LS2Request from "@enact/webos/LS2Request";
 import css from "./Log.module.less";
 //-------------------------------------------------------------------
 const bridge = new LS2Request(); // LS2 서비스 요청 인스턴스 생성
 //-------------------------------------------------------------------
-const LogBase = kind({ // enact kind
+const LogBase = kind({
+  // enact kind
   name: "LogBase",
 
   styles: {
@@ -28,26 +29,36 @@ const LogBase = kind({ // enact kind
       let car = data[0];
       let start = data[1];
       let end = data[2];
-      console.log("car : " + car)
+      console.log("car : " + car);
       let lsRequest = {
-        service:"luna://com.registercar.app.service",
-        method:"deleteCarData",
-        parameters: {carNumber: car},
-        onSuccess: (msg) => {console.log(msg);},
-        onFailure: (msg) => {console.log(msg);},
-      }
+        service: "luna://com.registercar.app.service",
+        method: "deleteCarData",
+        parameters: { carNumber: car },
+        onSuccess: (msg) => {
+          console.log(msg);
+        },
+        onFailure: (msg) => {
+          console.log(msg);
+        },
+      };
       bridge.send(lsRequest);
     },
     //--------------------------------------------------------
   },
 
   render: ({ children, remove, ...rest }) => {
-
     return (
       <div {...rest}>
         <div className={css.log}>
           <span>{children}</span>
-          <Button onClick={() => {remove(children)}} className={css.button} backgroundOpacity="transparent">remove</Button>
+          <Button
+            onClick={() => {
+              remove(children);
+            }}
+            className={css.button}
+          >
+            remove
+          </Button>
         </div>
       </div>
     );

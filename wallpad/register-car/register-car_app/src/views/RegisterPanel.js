@@ -112,8 +112,8 @@ const InputCarNum = () => {
         <DatePicker className={css.datepicker} onChange={setStart} />
         <DatePicker className={css.datepicker} onChange={setEnd} />
       </div>
-      <div className={css.submitBtn} backgroundOpacity="transparent">
-        <Button type="submit" onClick={onSubmit}>
+      <div backgroundOpacity="transparent">
+        <Button className={css.submitBtn} type="submit" onClick={onSubmit}>
           submit
         </Button>
       </div>
